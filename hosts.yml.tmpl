@@ -1,0 +1,56 @@
+all:
+  vars:
+    ansible_connection: ssh
+    ansible_user: ${ssh_username}
+    ansible_become: true
+    ansible_ssh_private_key_file: ${ssh_key}
+
+
+zookeeper:
+  hosts:
+    %{~ for index, private_dns in zookeeper_private_dns ~}
+    ${private_dns}:
+      ansible_host: ${zookeeper_public_dns[index]}
+    %{~ endfor ~}
+
+kafka_broker:
+  hosts:
+    %{~ for index, private_dns in kafka_broker_private_dns ~}
+    ${private_dns}:
+      ansible_host: ${kafka_broker_public_dns[index]}
+    %{~ endfor ~}
+
+schema_registry:
+  hosts:
+    %{~ for index, private_dns in schema_registry_private_dns ~}
+    ${private_dns}:
+      ansible_host: ${schema_registry_public_dns[index]}
+    %{~ endfor ~}
+
+kafka_rest:
+  hosts:
+    %{~ for index, private_dns in kafka_rest_private_dns ~}
+    ${private_dns}:
+      ansible_host: ${kafka_rest_public_dns[index]}
+    %{~ endfor ~}
+
+ksql:
+  hosts:
+    %{~ for index, private_dns in ksql_private_dns ~}
+    ${private_dns}:
+      ansible_host: ${ksql_public_dns[index]}
+    %{~ endfor ~}
+
+kafka_connect:
+  hosts:
+    %{~ for index, private_dns in kafka_connect_private_dns ~}
+    ${private_dns}:
+      ansible_host: ${kafka_connect_public_dns[index]}
+    %{~ endfor ~}
+
+control_center:
+  hosts:
+    %{~ for index, private_dns in control_center_private_dns ~}
+    ${private_dns}:
+      ansible_host: ${control_center_public_dns[index]}
+   %{~ endfor ~}
