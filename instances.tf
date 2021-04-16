@@ -11,7 +11,7 @@ resource "aws_instance" "zookeeper" {
   tags = merge(
     local.common_tags,
     map(
-      "Name", "${var.cluster_name}-zookeeper-${count.index}"
+      "Name", "${local.cluster_name}-zookeeper-${count.index}"
     )
   )
 
@@ -33,7 +33,7 @@ resource "aws_instance" "brokers" {
   tags = merge(
     local.common_tags,
     map(
-      "Name", "${var.cluster_name}-zookeeper-${count.index}"
+      "Name", "${local.cluster_name}-zookeeper-${count.index}"
     )
   )
 
@@ -51,7 +51,7 @@ resource "aws_instance" "connect" {
   tags = merge(
     local.common_tags,
     map(
-      "Name", "${var.cluster_name}-zookeeper-${count.index}"
+      "Name", "${local.cluster_name}-zookeeper-${count.index}"
     )
   )
 
@@ -69,7 +69,7 @@ resource "aws_instance" "schema_registry" {
   tags = merge(
     local.common_tags,
     map(
-      "Name", "${var.cluster_name}-zookeeper-${count.index}"
+      "Name", "${local.cluster_name}-zookeeper-${count.index}"
     )
   )
 
@@ -91,7 +91,7 @@ resource "aws_instance" "control_center" {
   tags = merge(
     local.common_tags,
     map(
-      "Name", "${var.cluster_name}-zookeeper-${count.index}"
+      "Name", "${local.cluster_name}-zookeeper-${count.index}"
     )
   )
 
@@ -109,7 +109,7 @@ resource "aws_instance" "rest_proxy" {
   tags = merge(
     local.common_tags,
     map(
-      "Name", "${var.cluster_name}-zookeeper-${count.index}"
+      "Name", "${local.cluster_name}-zookeeper-${count.index}"
     )
   )
 
@@ -131,7 +131,7 @@ resource "aws_instance" "ksql" {
   tags = merge(
     local.common_tags,
     map(
-      "Name", "${var.cluster_name}-zookeeper-${count.index}"
+      "Name", "${local.cluster_name}-zookeeper-${count.index}"
     )
   )
 

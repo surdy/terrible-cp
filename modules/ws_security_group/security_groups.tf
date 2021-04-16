@@ -3,7 +3,7 @@ data "http" "my_public_ip" {
 }
 
 resource "aws_security_group" "workstation_sg" {
-  name        = "workstation-sg-${local.cluster_name}"
+  name        = "workstation-sg-${var.cluster_name}"
   description = "Allow all connections from Workstations Public IP"
   vpc_id      = var.vpc_id
 

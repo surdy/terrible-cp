@@ -26,4 +26,4 @@ rest_proxy_instance_type = "t3.medium"
 control_center_instance_type = "t3a.large"
 ksql_instance_type = "t3a.large"
 
-add_workstation_access_sg = true 
+add_workstation_access_sg = false 
