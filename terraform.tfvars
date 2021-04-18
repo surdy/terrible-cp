@@ -14,10 +14,6 @@ rest_proxy_count = 1
 ksql_count = 2
 control_center_count = 1
 
-security_group_ids = ["sg-0530d3323337d2d22"]
-vpc_id = "vpc-047944e470c1d51db"
-subnet_id = "subnet-064343a3fbf437eac"
-
 zookeeper_instance_type = "t3a.large"
 broker_instance_type = "t3a.large"
 schema_registry_instance_type = "t3.medium"
@@ -26,4 +22,4 @@ rest_proxy_instance_type = "t3.medium"
 control_center_instance_type = "t3a.large"
 ksql_instance_type = "t3a.large"
 
-add_workstation_access_sg = false 
+admin_cidrs = ["0.0.0.0/0"]

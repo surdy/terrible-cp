@@ -3,9 +3,14 @@ variable "aws_region" {
   default = "us-west-2"
 }
 
+variable "availability_zone" {
+  description = "AWS AZ where to deploy the cluster"
+  default = "us-west-2b"
+}
+
 variable "cluster_name" {
   description = "The name of the provisioned cluster"
-  default     = "harpreet-terrible"
+  default     = "cp-terrible"
 }
 
 // Help avoid name collisions
@@ -16,12 +21,12 @@ variable "cluster_name_random_string" {
 
 variable "owner_name" {
   description = "Name to use for AWS tag Owner_Name"
-  default = ""
+  default     = ""
 }
 
 variable "owner_email" {
   description = "Name to use for AWS tag Owner_Email"
-  default = ""
+  default     = ""
 }
 
 // Any aditional tags, other than Owenr name and email
@@ -38,72 +43,72 @@ variable "ssh_key_name" {
 
 variable "zookeeper_count" {
   description = "Number of ZK instances"
-  default = 3
+  default     = 3
 }
 
 variable "zookeeper_instance_type" {
   description = "EC2 instance type for ZK Nodes"
-  default = "t3a.large"
+  default     = "t3a.large"
 }
 
 variable "broker_count" {
   description = "Number of broker instances"
-  default = 3
+  default     = 3
 }
 
 variable "broker_instance_type" {
   description = "EC2 instance type for brokers"
-  default = "t3a.large"
+  default     = "t3a.large"
 }
 
 variable "connect_count" {
   description = "Number of Connect worker instances"
-  default = 0
+  default     = 0
 }
 
 variable "connect_instance_type" {
   description = "EC2 instance type for Connect workers"
-  default = "t3a.large"
+  default     = "t3a.large"
 }
 
 variable "schema_registry_count" {
   description = "Number of Schema registry instances"
-  default = 0
+  default     = 0
 }
 
 variable "schema_registry_instance_type" {
   description = "EC2 instance type for Schema Registry"
-  default = "t3a.large"
+  default     = "t3a.large"
 }
 
 variable "rest_proxy_count" {
   description = "Number of Rest Proxy instances"
-  default = 0
+  default     = 0
 }
 
 variable "rest_proxy_instance_type" {
   description = "EC2 instance type for Rest Proxy"
-  default = "t3a.large"
+  default     = "t3a.large"
 }
 
 variable "control_center_count" {
   description = "Number of C3 instances"
-  default = 0
+  default     = 0
 }
 
 variable "control_center_instance_type" {
   description = "EC2 instance type for C3"
-  default = "t3a.large"
+  default     = "t3a.large"
 }
 
 variable "ksql_count" {
   description = "Number of KSQL instances"
-  default = 0
+  default     = 0
 }
 
 variable "ksql_instance_type" {
   description = "EC2 instance type for KSQL"
-  default = "t3a.large"
+  default     = "t3a.large"
 }
 
 variable "aws_ami_id"  {
@@ -114,16 +119,14 @@ variable "ssh_user" {
   default = "ubuntu"
 }
 
-variable "vpc_id" {
+variable "vpc_cidr" {
+  description = "CIDR block for the VPC that will be created"
+  default     = "10.0.0.0/16"
 }
 
-variable "subnet_id" {
-}
-
-variable "security_group_ids" {
-}
-
-variable "add_workstation_access_sg" {
-  description = "Automatically add security group to allow access from Public IP of the workstation"
-  default = true
+variable "admin_cidrs" {
+  type        = list
+  description = "Admin CIDRs to allow access to the cluster from outside"
+  default     = []
+  // when empty public IP of the machine running terraform is used as a /32 CIDR
 }
