@@ -3,7 +3,7 @@ variable "aws_region" {
   default = "us-west-2"
 }
 
-variable "availability_zone" {
+variable "aws_availability_zone" {
   description = "AWS AZ where to deploy the cluster"
   default = "us-west-2b"
 }

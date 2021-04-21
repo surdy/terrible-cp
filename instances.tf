@@ -2,7 +2,7 @@ resource "aws_instance" "zookeeper" {
   count         = var.zookeeper_count
   ami           = var.aws_ami_id
   instance_type = var.zookeeper_instance_type
-  availability_zone = var.availability_zone
+  availability_zone = var.aws_availability_zone
   key_name = var.ssh_key_name
 
   root_block_device {
@@ -11,9 +11,9 @@ resource "aws_instance" "zookeeper" {
 
   tags = merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_name}-zookeeper-${count.index}"
-    )
+    tomap({
+      "Name" = "${local.cluster_name}-zookeeper-${count.index}"
+    })
   )
 
   subnet_id = aws_subnet.cluster_subnet.id
@@ -25,7 +25,7 @@ resource "aws_instance" "brokers" {
   count         = var.broker_count
   ami           = var.aws_ami_id
   instance_type = var.broker_instance_type
-  availability_zone = var.availability_zone
+  availability_zone = var.aws_availability_zone
   key_name = var.ssh_key_name
 
   root_block_device {
@@ -34,9 +34,9 @@ resource "aws_instance" "brokers" {
 
   tags = merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_name}-zookeeper-${count.index}"
-    )
+    tomap({
+      "Name" = "${local.cluster_name}-broker-${count.index}"
+    })
   )
 
   subnet_id = aws_subnet.cluster_subnet.id
@@ -48,14 +48,14 @@ resource "aws_instance" "connect" {
   count         = var.connect_count
   ami           = var.aws_ami_id
   instance_type = var.connect_instance_type
-  availability_zone = var.availability_zone
+  availability_zone = var.aws_availability_zone
   key_name = var.ssh_key_name
 
   tags = merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_name}-zookeeper-${count.index}"
-    )
+    tomap({
+      "Name" = "${local.cluster_name}-connect-${count.index}"
+    })
   )
 
   subnet_id = aws_subnet.cluster_subnet.id
@@ -67,14 +67,14 @@ resource "aws_instance" "schema_registry" {
   count         = var.schema_registry_count
   ami           = var.aws_ami_id
   instance_type = var.schema_registry_instance_type
-  availability_zone = var.availability_zone
+  availability_zone = var.aws_availability_zone
   key_name = var.ssh_key_name
 
   tags = merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_name}-zookeeper-${count.index}"
-    )
+    tomap({
+      "Name" = "${local.cluster_name}-schema-registry-${count.index}"
+    })
   )
 
   subnet_id = aws_subnet.cluster_subnet.id
@@ -86,7 +86,7 @@ resource "aws_instance" "control_center" {
   count         = var.control_center_count
   ami           = var.aws_ami_id
   instance_type = var.control_center_instance_type
-  availability_zone = var.availability_zone
+  availability_zone = var.aws_availability_zone
   key_name = var.ssh_key_name
 
   root_block_device {
@@ -95,9 +95,9 @@ resource "aws_instance" "control_center" {
 
   tags = merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_name}-zookeeper-${count.index}"
-    )
+    tomap({
+      "Name" = "${local.cluster_name}-control-center-${count.index}"
+    })
   )
 
   subnet_id = aws_subnet.cluster_subnet.id
@@ -109,14 +109,14 @@ resource "aws_instance" "rest_proxy" {
   count         = var.rest_proxy_count
   ami           = var.aws_ami_id
   instance_type = var.rest_proxy_instance_type
-  availability_zone = var.availability_zone
+  availability_zone = var.aws_availability_zone
   key_name = var.ssh_key_name
 
   tags = merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_name}-zookeeper-${count.index}"
-    )
+    tomap({
+      "Name" = "${local.cluster_name}-rest-proxy-${count.index}"
+    })
   )
 
   subnet_id = aws_subnet.cluster_subnet.id
@@ -128,7 +128,7 @@ resource "aws_instance" "ksql" {
   count         = var.ksql_count
   ami           = var.aws_ami_id
   instance_type = var.ksql_instance_type
-  availability_zone = var.availability_zone
+  availability_zone = var.aws_availability_zone
   key_name = var.ssh_key_name
 
   root_block_device {
@@ -137,9 +137,9 @@ resource "aws_instance" "ksql" {
 
   tags = merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_name}-zookeeper-${count.index}"
-    )
+    tomap({
+      "Name" = "${local.cluster_name}-ksql-${count.index}"
+    })
   )
 
   subnet_id = aws_subnet.cluster_subnet.id

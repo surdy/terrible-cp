@@ -5,8 +5,8 @@ resource "aws_vpc" "cluster_vpc" {
 
   tags = merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_name}-vpc"
-    )
+    tomap({
+      "Name" = "${local.cluster_name}-vpc"
+    })
   )
 }

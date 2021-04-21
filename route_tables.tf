@@ -8,9 +8,9 @@ resource "aws_route_table" "cluster_rt" {
     
   tags = merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_name}-rt"
-    )
+    tomap({
+      "Name" = "${local.cluster_name}-rt"
+    })
   )
 }
 
