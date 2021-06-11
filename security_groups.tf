@@ -24,8 +24,8 @@ resource "aws_security_group" "cluster_sg" {
 
   tags = merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_name}-sg"
-    )
+    tomap({
+      "Name" = "${local.cluster_name}-sg"
+    })
   )
 }
